@@ -17,6 +17,3 @@ class SessionManager:
     def __exit__(self, exc_type, exc_value, traceback):
         if self.session:
             self.session.close()
-
-
-database = Database()

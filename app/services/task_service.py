@@ -1,16 +1,16 @@
 from sqlalchemy.orm import Session
 from app.models import Task  # Assuming models.py contains the Task model
+
+from app.database import SessionManager
 from app.schemas.task import TaskCreate, TaskUpdate  # Assuming schemas.py contains Pydantic schemas
 
 class TaskService:
-    def __init__(self, db: Session):
-        self.db = db
-
-    def get_all_tasks(db: Session, skip: int = 0, limit: int = 10):
+    def get_all_tasks(self, skip: int = 0, limit: int = 10):
         """
         Retrieve all tasks with optional pagination.
         """
-        return db.query(Task).offset(skip).limit(limit).all()
+        with SessionManager() as session:
+            return session.query(Task).offset(skip).limit(limit).all()
 
     # Function to retrieve a task by its ID
     def get_task_by_id(db: Session, task_id: int):
