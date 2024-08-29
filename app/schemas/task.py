@@ -14,3 +14,4 @@ class TaskUpdate(BaseModel):
     title: str = None
     description: str = None
     is_done: bool = None
+

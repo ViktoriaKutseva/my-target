@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.models import Task  # Assuming models.py contains the Task model
+from app.models.task import Task
 
 from app.database import SessionManager
 from app.schemas.task import TaskCreate, TaskUpdate  # Assuming schemas.py contains Pydantic schemas
