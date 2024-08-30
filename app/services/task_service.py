@@ -20,19 +20,20 @@ class TaskService:
         return db.query(Task).filter(Task.id == task_id).first()
 
     # Function to create a new task
-    def create_task(db: Session, task_data: TaskCreate):
+    def create_task(self, task_data: TaskCreate):
         """
         Create a new task.
         """
-        new_task = Task(
-            title=task_data.title,
-            description=task_data.description,
-            is_done=task_data.is_done
-        )
-        db.add(new_task)
-        db.commit()
-        db.refresh(new_task)
-        return new_task
+        with SessionManager() as session:
+            new_task = Task(
+                title=task_data.title,
+                description=task_data.description,
+                is_done=task_data.is_done
+            )
+            session.add(new_task)
+            session.commit()
+            session.refresh(new_task)
+            return new_task
 
     # Function to update an existing task
     def update_task(db: Session, task_id: int, task_data: TaskUpdate):
@@ -61,3 +62,4 @@ class TaskService:
             db.delete(task)
             db.commit()
         return task
+

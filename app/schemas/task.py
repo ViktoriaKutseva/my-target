@@ -9,6 +9,7 @@ class Task(BaseModel):
 class TaskCreate(BaseModel):
     title: str
     description: str = None
+    is_done: bool = False
 
 class TaskUpdate(BaseModel):
     title: str = None
