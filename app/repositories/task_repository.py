@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from app.models.task import Task
 
+
 class TaskRepository:
     def get_all(self, db: Session, skip: int = 0, limit: int = 10):
         return db.query(Task).offset(skip).limit(limit).all()

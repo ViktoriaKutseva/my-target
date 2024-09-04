@@ -1,8 +1,8 @@
 from sqlalchemy.orm import Session
 from app.models.task import Task
-
 from app.database import SessionManager
-from app.schemas.task import TaskCreate, TaskUpdate  # Assuming schemas.py contains Pydantic schemas
+from app.schemas.task import TaskCreate, TaskUpdate
+
 
 class TaskService:
     def get_all_tasks(self, skip: int = 0, limit: int = 10):
@@ -65,4 +65,3 @@ class TaskService:
                 db.delete(task)
                 db.commit()
             return task
-
