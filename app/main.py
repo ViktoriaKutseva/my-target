@@ -9,10 +9,10 @@ app = FastAPI()
 
 static_dir = os.path.abspath("static")
 # Mount the static directory to serve static files
-app.mount("/static", StaticFiles(directory=static_dir), name="static")
+app.mount("/static", StaticFiles(directory='static'), name="static")
 
 # Set up Jinja2 template directory
-templates = Jinja2Templates(directory=os.path.abspath("app/templates"))
+templates = Jinja2Templates(directory="templates")
 
 app.include_router(task.router)
 

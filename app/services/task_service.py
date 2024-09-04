@@ -13,11 +13,12 @@ class TaskService:
             return session.query(Task).offset(skip).limit(limit).all()
 
     # Function to retrieve a task by its ID
-    def get_task_by_id(db: Session, task_id: int):
+    def get_task_by_id(self, db: Session, task_id: int):
         """
         Retrieve a single task by ID.
         """
-        return db.query(Task).filter(Task.id == task_id).first()
+        with SessionManager() as session:
+            return db.query(Task).filter(Task.id == task_id).first()
 
     # Function to create a new task
     def create_task(self, task_data: TaskCreate):
@@ -36,30 +37,32 @@ class TaskService:
             return new_task
 
     # Function to update an existing task
-    def update_task(db: Session, task_id: int, task_data: TaskUpdate):
+    def update_task(self, db: Session, task_id: int, task_data: TaskUpdate):
         """
         Update an existing task.
         """
-        task = db.query(Task).filter(Task.id == task_id).first()
-        if task:
-            if task_data.title is not None:
-                task.title = task_data.title
-            if task_data.description is not None:
-                task.description = task_data.description
-            if task_data.is_done is not None:
-                task.is_done = task_data.is_done
-            db.commit()
-            db.refresh(task)
-        return task
+        with SessionManager() as session:
+            task = db.query(Task).filter(Task.id == task_id).first()
+            if task:
+                if task_data.title is not None:
+                    task.title = task_data.title
+                if task_data.description is not None:
+                    task.description = task_data.description
+                if task_data.is_done is not None:
+                    task.is_done = task_data.is_done
+                db.commit()
+                db.refresh(task)
+            return task
 
     # Function to delete a task
-    def delete_task(db: Session, task_id: int):
+    def delete_task(self, db: Session, task_id: int):
         """
         Delete a task by ID.
         """
-        task = db.query(Task).filter(Task.id == task_id).first()
-        if task:
-            db.delete(task)
-            db.commit()
-        return task
+        with SessionManager() as session:
+            task = db.query(Task).filter(Task.id == task_id).first()
+            if task:
+                db.delete(task)
+                db.commit()
+            return task
 
