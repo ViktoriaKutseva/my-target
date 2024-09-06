@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
     <link rel="stylesheet" href="/static/style.css">
+    <script src="/static/task_script.js" defer></script>
 </head>
 <body>
     <header>
@@ -19,13 +20,14 @@
 
     <main>
         <h2>Task List</h2>
-        <ul>
+        <ul id="task-list">
             {% for task in tasks %}
                 <li>
                     <h3>{{ task.title }}</h3>
                     <p>{{ task.description }}</p>
                     <p>Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>
                     <a href="/tasks/{{ task.id }}">View Details</a>
+                    <p><button class="delete-btn" data-task-id="{{ task.id }}">Delete</button></p>
                 </li>
             {% endfor %}
         </ul>
