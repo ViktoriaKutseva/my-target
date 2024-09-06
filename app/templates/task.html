@@ -43,26 +43,65 @@
 <!--    <meta charset="UTF-8">-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
 <!--    <title>Task Manager</title>-->
-<!--    <link rel="stylesheet" href="/static/style.css"> &lt;!&ndash; Link to CSS &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="/static/style.css">-->
 <!--</head>-->
 <!--<body>-->
 <!--    <header>-->
 <!--        <h1>Task Manager</h1>-->
+<!--        <nav>-->
+<!--            <ul>-->
+<!--                <li><a href="/tasks">View All Tasks</a></li>-->
+<!--                <li><a href="/tasks/new">Create New Task</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
 <!--    </header>-->
+
 <!--    <main>-->
-<!--        <h2>Tasks</h2>-->
+<!--        <h2>Task List</h2>-->
 <!--        <ul>-->
 <!--            {% for task in tasks %}-->
-<!--            <li>-->
-<!--                <strong>{{ task.title }}</strong>-->
-<!--                <p>{{ task.description }}</p>-->
-<!--                <p>Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>-->
-<!--            </li>-->
+<!--                <li>-->
+<!--                    <h3>{{ task.title }}</h3>-->
+<!--                    <p>{{ task.description }}</p>-->
+<!--                    <p>Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>-->
+<!--                    <a href="/tasks/{{ task.id }}">View Details</a>-->
+<!--                </li>-->
 <!--            {% endfor %}-->
 <!--        </ul>-->
 <!--    </main>-->
+
 <!--    <footer>-->
 <!--        <p>&copy; 2024 Task Manager</p>-->
 <!--    </footer>-->
 <!--</body>-->
 <!--</html>-->
+
+<!--&lt;!&ndash;<!DOCTYPE html>&ndash;&gt;-->
+<!--&lt;!&ndash;<html lang="en">&ndash;&gt;-->
+<!--&lt;!&ndash;<head>&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta charset="UTF-8">&ndash;&gt;-->
+<!--&lt;!&ndash;    <meta name="viewport" content="width=device-width, initial-scale=1.0">&ndash;&gt;-->
+<!--&lt;!&ndash;    <title>Task Manager</title>&ndash;&gt;-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="/static/style.css"> &lt;!&ndash; Link to CSS &ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;</head>&ndash;&gt;-->
+<!--&lt;!&ndash;<body>&ndash;&gt;-->
+<!--&lt;!&ndash;    <header>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h1>Task Manager</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    </header>&ndash;&gt;-->
+<!--&lt;!&ndash;    <main>&ndash;&gt;-->
+<!--&lt;!&ndash;        <h2>Tasks</h2>&ndash;&gt;-->
+<!--&lt;!&ndash;        <ul>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% for task in tasks %}&ndash;&gt;-->
+<!--&lt;!&ndash;            <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                <strong>{{ task.title }}</strong>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>{{ task.description }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;                <p>Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>&ndash;&gt;-->
+<!--&lt;!&ndash;            </li>&ndash;&gt;-->
+<!--&lt;!&ndash;            {% endfor %}&ndash;&gt;-->
+<!--&lt;!&ndash;        </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;    </main>&ndash;&gt;-->
+<!--&lt;!&ndash;    <footer>&ndash;&gt;-->
+<!--&lt;!&ndash;        <p>&copy; 2024 Task Manager</p>&ndash;&gt;-->
+<!--&lt;!&ndash;    </footer>&ndash;&gt;-->
+<!--&lt;!&ndash;</body>&ndash;&gt;-->
+<!--&lt;!&ndash;</html>&ndash;&gt;-->
