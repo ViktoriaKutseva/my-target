@@ -9,7 +9,7 @@ app = FastAPI(title="Task Manager", version="1.0")
 
 # Serve static files
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 # Include routers for task and home
 app.include_router(home.router)

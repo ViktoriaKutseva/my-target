@@ -8,7 +8,7 @@ from services import task_service
 
 router = APIRouter()
 
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 
 @router.get("/tasks", response_class=HTMLResponse)
 async def view_tasks(request: Request):

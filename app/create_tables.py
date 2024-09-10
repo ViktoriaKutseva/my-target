@@ -1,5 +1,5 @@
-from app.database import SessionManager
-from app.models.task import Task
+from database import SessionManager
+from models.task import Task
 
 
 def init_db():

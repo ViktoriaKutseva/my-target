@@ -1,35 +1,47 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Handle form submission for creating a new task
-    const form = document.querySelector('#task-form');
-    if (form) {
-        form.addEventListener('submit', async function(event) {
-            event.preventDefault(); // Prevent the form from submitting the traditional way
+document.addEventListener('DOMContentLoaded', () => {
+    const taskForm = document.querySelector('#task-form');
+    
+    if (taskForm) {
+        taskForm.addEventListener('submit', handleFormSubmit);
+    }
 
-            const formData = new FormData(form);
-            const taskData = {
-                title: formData.get('title'),
-                description: formData.get('description'),
-                is_done: formData.get('is_done') === 'on'
-            };
+    async function handleFormSubmit(event) {
+        event.preventDefault();
+        const taskData = getFormData(event.target);
 
-            try {
-                const response = await fetch('/tasks', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(taskData),
-                });
+        try {
+            const response = await createTask(taskData);
+            handleResponse(response);
+        } catch (error) {
+            alert('Network error.');
+        }
+    }
 
-                if (response.ok) {
-                    alert('Task created successfully!');
-                    form.reset(); // Clear the form fields
-                } else {
-                    alert('Error creating task.');
-                }
-            } catch (error) {
-                alert('Network error.');
-            }
+    function getFormData(form) {
+        const formData = new FormData(form);
+        return {
+            title: formData.get('title'),
+            description: formData.get('description'),
+            is_done: formData.get('is_done') === 'on'
+        };
+    }
+
+    async function createTask(taskData) {
+        return fetch('/tasks', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(taskData),
         });
+    }
+
+    function handleResponse(response) {
+        if (response.ok) {
+            alert('Task created successfully!');
+            taskForm.reset(); 
+        } else {
+            alert('Error creating task.');
+        }
     }
 });
