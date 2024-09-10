@@ -1,13 +1,14 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from app.api.v1.endpoints import task, home
+
+from api.v1.endpoints import task, home
 
 
 app = FastAPI(title="Task Manager", version="1.0")
 
 # Serve static files
-app.mount("/static", StaticFiles(directory='static'), name="static")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 # Include routers for task and home
