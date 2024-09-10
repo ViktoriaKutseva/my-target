@@ -1,6 +1,6 @@
-from app.models.task import Task
-from app.database import SessionManager
-from app.schemas.task import TaskCreate, TaskUpdate
+from models.task import Task
+from database import SessionManager
+from schemas.task import TaskCreate, TaskUpdate
 
 class TaskService:
     def get_tasks(self, skip: int = 0, limit: int = 100):

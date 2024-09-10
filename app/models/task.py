@@ -1,5 +1,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
-from app.database import SessionManager
+
+from database import SessionManager
+
 
 Base = SessionManager().base  # Use the base from SessionManager
 

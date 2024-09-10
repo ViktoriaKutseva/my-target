@@ -1,10 +1,9 @@
-from fastapi import APIRouter, HTTPException, Depends, Request
+from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import HTMLResponse
-from typing import List
-from app.schemas.task import Task, TaskCreate, TaskUpdate
-from app.services import task_service
 from fastapi.templating import Jinja2Templates
-from fastapi.middleware.cors import CORSMiddleware
+
+from schemas.task import Task, TaskCreate, TaskUpdate
+from services import task_service
 
 
 router = APIRouter()
