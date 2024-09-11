@@ -19,23 +19,34 @@ document.addEventListener('DOMContentLoaded', () => {
     async function deleteTask(event) {
         const taskId = event.target.getAttribute('data-task-id');
 
-        await deleteTaskRequest(taskId);
-        event.target.closest('li').remove();
+        try {
+            await deleteTaskRequest(taskId);
+            // Next line within try block to prevent deletion of task from the DOM if the request fails
+            event.target.closest('li').remove();
+        } catch (error) {
+            alert(error);
+        }
     }
 
     async function deleteTaskRequest(taskId) {
-        try {
-            const response = await fetch(`/tasks/${taskId}`, {
+        await sendRequest(
+            fetch(`/tasks/${taskId}`, {
                 method: 'DELETE',
-            });
+            })
+        )
+    }
+
+    async function sendRequest(request) {
+        try {
+            const response = await request
             if (response.ok) {
-                alert('Task deleted successfully!');
                 return response; 
             } else {
-                alert('Error deleting task.');
+                throw new Error(`HTTP error! status: ${response.status}`);
             }
         } catch (error) {
-            alert('Network error.');
+            console.error('Error in sendRequest:', error);
+            throw error;
         }
     }
     
