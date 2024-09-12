@@ -22,10 +22,10 @@
         <h2>Task List</h2>
         <ul id="task-list">
             {% for task in tasks %}
-                <li data-task-id="{{ task.id }}">
-                    <h3>{{ task.title }}</h3>
-                    <p>{{ task.description }}</p>
-                    <p>Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>
+                <li class="task" data-task-id="{{ task.id }}">
+                    <h3 class="title">{{ task.title }}</h3>
+                    <p class="description">{{ task.description }}</p>
+                    <p class="status">Status: {{ 'Done' if task.is_done else 'Not Done' }}</p>
                     <a href="/tasks/{{ task.id }}">View Details</a>
                     <p><button class="delete-btn" data-task-id="{{ task.id }}">Delete</button></p>
                     <button class="update-btn" data-task-id="{{ task.id }}" data-task-title="{{ task.title }}" data-task-description="{{ task.description }}" data-task-status="{{ task.is_done }}">Update</button>
